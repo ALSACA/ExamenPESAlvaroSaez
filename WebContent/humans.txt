@@ -1,0 +1,47 @@
+http://www.alsacaweb.com
+
+/* TEAM */
+	Chef:Álvaro Sáez
+	Tel�fono: +34606469015
+	Email:alsacaweb@alsaca.es
+	Web:www.alsacaweb.com
+	From:Madrid, Spain
+
+	UI developer: Álvaro Sáez
+	Tel�fono: +34606469015
+	Email:alsacaweb@alsaca.es
+	Web:www.alsacaweb.com
+	From:Madrid, Spain
+
+	One eyed illustrator: Álvaro Sáez
+	Tel�fono: +34606469015
+	Email:alsacaweb@alsaca.es
+	Web:www.alsacaweb.com
+	From:Madrid, Spain
+
+	Standard Man: Álvaro Sáez
+	Tel�fono: +34606469015
+	Email:alsacaweb@alsaca.es
+	Web:www.alsacaweb.com
+	From:Madrid, Spain
+	
+	Web designer: Álvaro Sáez
+	Tel�fono: +34606469015
+	Email:alsacaweb@alsaca.es
+	Web:www.alsacaweb.com
+	From:Madrid, Spain
+
+/* THANKS */
+
+	(First) ES Translator: Álvaro Sáez
+	Tel�fono: +34606469015
+	Email:alsacaweb@alsaca.es
+	Web:www.alsacaweb.com
+	From:Madrid, Spain
+	
+/* SITE */
+
+	Last update:2015/04/29
+	Language: Castellano
+	Doctype:HTML5
+	IDE: Eclipse Platform, Sublime Text, Notepad++, Google Chrome, Mozilla Firefox, Photoshop
