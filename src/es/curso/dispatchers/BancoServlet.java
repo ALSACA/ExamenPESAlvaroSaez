@@ -73,12 +73,11 @@ public class BancoServlet extends HttpServlet {
 			String numeroComprobacion=request.getParameter("numeroComprobacion");
 			String contrasenha=request.getParameter("contrasenha");
 			String bloqueadaStr=request.getParameter("bloqueada");
-			String activaStr=request.getParameter("activa");
 			Boolean bloqueada=false;
 			if(bloqueadaStr.equals("true")){
 				bloqueada = true;
 			}
-			if(activaStr.equals("true")){
+			if(bloqueadaStr.equals("false")){
 				bloqueada = false;
 			}
 			Numero numeros=new Numero(0, numero, cupoMaximo, cupoDisponible, tipo, numeroComprobacion, contrasenha, bloqueada); 

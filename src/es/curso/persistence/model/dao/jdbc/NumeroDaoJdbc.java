@@ -109,8 +109,8 @@ public class NumeroDaoJdbc implements NumeroDao{
 			//2.establecer la conexión
 			cx=DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/Banco",
-					"rootBanco",
-					"rootBanco");
+					"root",
+					"root");
 			//3.iniciar el autocommit en false para gestionar transacciones
 			cx.setAutoCommit(false);
 		} catch (ClassNotFoundException e) {

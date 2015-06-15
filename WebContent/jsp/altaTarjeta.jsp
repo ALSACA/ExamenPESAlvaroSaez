@@ -67,7 +67,7 @@
                     <div class="elemento">
                         <label for="bloqueada">Bloqueada</label>
                         <input type="radio" name="bloqueada" value="true" id="bloqueada"/> 
-                        <label for="activa">Activa</label>
+                        <label for="bloqueada">Activa</label>
                         <input type="radio" name="bloqueada" value="false" id="bloqueada"/>
                     </div>
                     <br/><br/>
