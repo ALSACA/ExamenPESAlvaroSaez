@@ -65,7 +65,10 @@
                         <label for="bloqueada" class="bloqueada">Estado Tarjeta</label>
                     </div>
                     <div class="elemento">
-                        <input type="text" id="bloqueada" name="bloqueada" required autofocus />
+                        <label for="bloqueada">Bloqueada</label>
+                        <input type="radio" name="bloqueada" value="true" id="bloqueada"/> 
+                        <label for="activa">Activa</label>
+                        <input type="radio" name="bloqueada" value="false" id="bloqueada"/>
                     </div>
                     <br/><br/>
                     <input type="submit" id="enviar" class="mano" value="Enviar" /><!-- el type de enviar es submit->-->

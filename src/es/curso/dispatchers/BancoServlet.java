@@ -1,6 +1,7 @@
 package es.curso.dispatchers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.curso.controllers.ejb.DarAltaTarjetasControllerEjb;
 import es.curso.controllers.ejb.ListarTarjetasControllerEjb;
+import es.curso.model.entity.Numero;
 
 /**
  * Servlet implementation class BancoServlet
  */
-@WebServlet("/BancoServlet")
+@WebServlet("/Banco/*")
 public class BancoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -23,7 +26,7 @@ public class BancoServlet extends HttpServlet {
      */
     public BancoServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -40,12 +43,12 @@ public class BancoServlet extends HttpServlet {
 				rd=request.getRequestDispatcher("/jsp/altaTarjeta.jsp");
 				rd.forward(request, response);
 				break;
-			case "listarTarjetas"://se invocará al controlador adecuado que
+		case "listarTarjetas"://se invocará al controlador adecuado que
 								//obtendrá todos los clientes
 								//esta petición redirije a otra página
-				ListarTarjetasControllerEjb todos=new ListarTarjetasControllerEjb();
-				ArrayList<Numero> numero= todos.listarTarjetas();
-				request.setAttribute("numero", numero);
+				ListarTarjetasControllerEjb tarjetas=new ListarTarjetasControllerEjb();
+				ArrayList<Numero> numeros= tarjetas.listarTarjetas();
+				request.setAttribute("numeros", numeros);
 				titulo="Listado General de Tarjetas";
 				rd = request.getRequestDispatcher("/jsp/listarTarjetas.jsp");
 				rd.forward(request, response);
@@ -63,22 +66,30 @@ public class BancoServlet extends HttpServlet {
 		switch(action){
 		case "altaTarjetas":
 			//recuperar los datos del formulario
-			String numero=request.getParameter("numero");
+			int numero=Integer.parseInt(request.getParameter("numero"));
 			String cupoMaximo=request.getParameter("cupoMaximo");
 			String cupoDisponible=request.getParameter("cupoDisponible");
 			String tipo=request.getParameter("tipo");
 			String numeroComprobacion=request.getParameter("numeroComprobacion");
 			String contrasenha=request.getParameter("contrasenha");
-			String bloqueada=request.getParameter("bloqueada");
-			Numero numero=new Numero(0, numero, cupoMaximo, cupoDisponible, tipo, numeroComprobacion, contrasenha, bloqueada); 
+			String bloqueadaStr=request.getParameter("bloqueada");
+			String activaStr=request.getParameter("activa");
+			Boolean bloqueada=false;
+			if(bloqueadaStr.equals("true")){
+				bloqueada = true;
+			}
+			if(activaStr.equals("true")){
+				bloqueada = false;
+			}
+			Numero numeros=new Numero(0, numero, cupoMaximo, cupoDisponible, tipo, numeroComprobacion, contrasenha, bloqueada); 
 			//se invocará al controlador adecuado
 			DarAltaTarjetasControllerEjb controlador=new DarAltaTarjetasControllerEjb();
-			controlador.agregar(numero);
+			controlador.agregar(numeros);
 			
 			rd=request.getRequestDispatcher("../index.jsp");
 			rd.forward(request, response);
 			
 			break;
+		}
 	}
-
 }

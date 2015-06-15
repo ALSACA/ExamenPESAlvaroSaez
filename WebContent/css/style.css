@@ -136,7 +136,7 @@ form {
 	border: .1em solid #000000;
 	border-radius: .5em;
 	box-shadow: 3em 3em 3em rgba(0, 0, 0, .5);
-	height: 400px;
+	height: auto;
 	margin-bottom: .5em;
 	margin-left: 6em;
 	padding-left: 2em;
