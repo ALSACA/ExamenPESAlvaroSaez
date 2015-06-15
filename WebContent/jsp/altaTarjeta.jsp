@@ -11,7 +11,7 @@
        <h2>Alta Tarjetas</h2>
             <h4></h4>
         <section id="formulario">
-            <form name="altatarjeta" action="/ExamenPESAlvaroSaez/Banco/altaTarjeta" method="post" enctype="text/html>">
+            <form name="altatarjeta" action="/ExamenPESAlvaroSaez/Banco/altaTarjetas" method="post" enctype="text/html>">
                     <h4>NUEVA TARJETA</h4>
                     <div class="elemento">
                         <input type="hidden" id="id" name="id" required autofocus />

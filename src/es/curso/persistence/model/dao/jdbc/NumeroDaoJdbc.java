@@ -29,7 +29,7 @@ public class NumeroDaoJdbc implements NumeroDao{
 			abrirConexion();
 			 /* 2. preparar la sentencia -sql-para agregar*/
 			PreparedStatement ps=cx.prepareStatement(
-					"INSERT INTO NUMERO VALUES(?,?,?,?)");
+					"INSERT INTO NUMERO VALUES(?,?,?,?,?,?,?)");
 			//2.1.INSERTAR LOS DATOS DEL CLIENTE EN LAS INTERROGACIONES
 			ps.setInt(1, 0);
 			ps.setInt(2, numero.getNumero());
