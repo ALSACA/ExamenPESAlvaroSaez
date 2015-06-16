@@ -175,6 +175,36 @@ public class NumeroDaoJdbc implements NumeroDao{
 					}	
 					
 	}
+	@Override
+	public void delete(int id) {
+		try {
+			//1.establecer conexión
+			abrirConexion();
+			//2.preparar la sentencia sql parametrizada(las de ?)
+			PreparedStatement ps=cx.prepareStatement(
+					"DELETE FROM TARJETAS WHERE ID=?");
+			//2.1.especificar lo que va en ?
+			ps.setInt(1,id);
+			//3.ejecutar la query
+			ps.executeUpdate();
+			//3.1 se hace commit
+			cx.commit();
+		} 
+		catch (SQLException e) {
+			try {
+				cx.rollback();
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+				e.printStackTrace();
+			}
+			finally{
+			/* 4. cerrar la conexion */
+			cerrarConexion();
+			}
+		
+	}
 	
 	
 }

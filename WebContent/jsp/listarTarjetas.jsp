@@ -45,20 +45,19 @@
                 <td><input type="text" name="numero" value="<%= c.getNumero() %>" /></td>
                 <td><input type="text" name="cupoMaximo" value="<%= c.getCupoMaximo() %>" /></td>
                 <td><input type="text" name="cupoDisponible" value="<%= c.getCupoDisponible() %>" /></td>
-                <td><input type="text" name="tipo" value="<%= c.getTipo() %>" /></td>
                 <td>
                     <label for="visa">VISA</label>
                     <input type="radio" name="tipo" value="visa"<%= c.getTipo().equals("visa")?"checked='checked'":"" %> /> 
                     <label for="master">MASTERCARD</label>
-                    <input type="radio" name="tipo" value="mastercard"<%= c.getTipo().equals("master")?"checked='checked'":"" %> />
+                    <input type="radio" name="tipo" value="master"<%= c.getTipo().equals("master")?"checked='checked'":"" %> />
                 </td> 
                 <td><input type="text" name="numeroComprobacion" value="<%= c.getNumeroComprobacion() %>" /></td>
                 <td><input type="text" name="contrasenha" value="<%= c.getContrasenha() %>" /></td>
                 <td>
                 <label for="bloqueada">Bloqueada</label>
-                <input type="radio" name="bloqueada" value="true" <%= c.getBloqueada()==false?"checked='checked'":"" %> />
+                <input type="radio" name="bloqueada" value="false" <%= c.getBloqueada()==false?"checked='checked'":"" %> />
                 <label for="activa">Activa</label>
-                <input type="radio" name="bloqueada" value="false" <%= c.getBloqueada()==true?"checked='checked'":"" %>/>
+                <input type="radio" name="bloqueada" value="true" <%= c.getBloqueada()==true?"checked='checked'":"" %>/>
                 </td>
                 
                 <td><input class="btnSinBordes" type="submit" 

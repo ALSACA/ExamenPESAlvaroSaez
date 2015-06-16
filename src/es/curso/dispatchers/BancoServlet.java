@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.curso.controllers.ActualizarController;
+import es.curso.controllers.EliminarPorIdController;
+import es.curso.controllers.ejb.ActualizarControllerEjb;
 import es.curso.controllers.ejb.DarAltaTarjetasControllerEjb;
+import es.curso.controllers.ejb.EliminarPorIdControllerEjb;
 import es.curso.controllers.ejb.ListarTarjetasControllerEjb;
 import es.curso.model.entity.Numero;
 
@@ -54,6 +57,11 @@ public class BancoServlet extends HttpServlet {
 				rd = request.getRequestDispatcher("/jsp/listarTarjetas.jsp");
 				rd.forward(request, response);
 				break;
+		case "eliminarPorId"://se redirigirá hacia el formulario
+			//eliminarPorId,
+			rd = request.getRequestDispatcher("/jsp/eliminarPorId.jsp");
+			rd.forward(request, response);
+			break;
 		default:
 			rd = request.getRequestDispatcher("../index.jsp");
 			rd.forward(request, response);
@@ -120,7 +128,19 @@ public class BancoServlet extends HttpServlet {
 			
 			response.sendRedirect("listarTarjetas");
 		
-			break;	
+			break;
+		case "eliminarPorId":
+			//recuperar id del formulario
+			int id=Integer.parseInt(request.getParameter("id"));
+			
+			//llamar a controlador
+			EliminarPorIdController eliminarPorIdEjb=new EliminarPorIdControllerEjb();
+			eliminarPorIdEjb.eliminarPorId(id);
+			
+			response.sendRedirect("listarTodos");
+			
+			break;
+			
 		}
 	}
 }

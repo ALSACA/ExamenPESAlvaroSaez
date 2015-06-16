@@ -8,4 +8,5 @@ public interface NumeroDao {
 	public void create(Numero numero);
 	public ArrayList<Numero> findAll();
 	public void update(Numero numero);
+	public void delete(int id);
 }

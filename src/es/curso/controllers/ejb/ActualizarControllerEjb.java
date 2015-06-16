@@ -1,4 +1,4 @@
-package es.curso.dispatchers;
+package es.curso.controllers.ejb;
 
 import es.curso.controllers.ActualizarController;
 import es.curso.model.entity.Numero;
