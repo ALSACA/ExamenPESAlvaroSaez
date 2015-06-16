@@ -13,11 +13,21 @@ public class Numero {
 	public Numero() {
 		super();
 	}
-	public Numero(int i, int numero, String cupoMaximo2,
-			String cupoDisponible2, String tipo2, String numeroComprobacion2,
-			String contrasenha2, Boolean bloqueada2) {
-		
+
+	public Numero(int id, int numero, String cupoMaximo, String cupoDisponible,
+			String tipo, String numeroComprobacion, String contrasenha,
+			Boolean bloqueada) {
+		super();
+		this.id = id;
+		this.numero = numero;
+		this.cupoMaximo = cupoMaximo;
+		this.cupoDisponible = cupoDisponible;
+		this.tipo = tipo;
+		this.numeroComprobacion = numeroComprobacion;
+		this.contrasenha = contrasenha;
+		this.bloqueada = bloqueada;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -74,6 +84,8 @@ public class Numero {
 				+ ", contrasenha=" + contrasenha + ", bloqueada=" + bloqueada
 				+ "]";
 	}
+
+	
 	
 }
 

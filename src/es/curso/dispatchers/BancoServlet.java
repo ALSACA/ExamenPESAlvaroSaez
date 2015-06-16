@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.curso.controllers.ActualizarController;
 import es.curso.controllers.ejb.DarAltaTarjetasControllerEjb;
 import es.curso.controllers.ejb.ListarTarjetasControllerEjb;
 import es.curso.model.entity.Numero;
@@ -53,8 +54,14 @@ public class BancoServlet extends HttpServlet {
 				rd = request.getRequestDispatcher("/jsp/listarTarjetas.jsp");
 				rd.forward(request, response);
 				break;
+		default:
+			rd = request.getRequestDispatcher("../index.jsp");
+			rd.forward(request, response);
+			break;
 		}
+	
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -89,6 +96,31 @@ public class BancoServlet extends HttpServlet {
 			rd.forward(request, response);
 			
 			break;
+		case "actualizar":
+			int idNumero=Integer.parseInt(request.getParameter("id"));
+			int numeroNumero=Integer.parseInt(request.getParameter("numero"));
+			String cupoMaximoNumero=request.getParameter("cupoMaximo");
+			String cupoDisponibleNumero=request.getParameter("cupoDisponible");
+			String tipoNumero=request.getParameter("tipo");
+			String numeroComprobacionNumero=request.getParameter("numeroComprobacion");
+			String contrasenhaNumero=request.getParameter("contrasenha");
+			String bloqueadaNumero=request.getParameter("bloqueada");
+			Boolean bloqueada1=false;
+			if(bloqueadaNumero.equals("true")){
+				bloqueada1 = true;
+			}
+			if(bloqueadaNumero.equals("false")){
+				bloqueada1 = false;
+			}
+			
+			Numero numeroModif=new Numero(idNumero, numeroNumero, cupoMaximoNumero, cupoDisponibleNumero, tipoNumero, numeroComprobacionNumero, contrasenhaNumero, bloqueada1);
+			//se invocará al controlador adecuado
+			ActualizarController actualizarEjb=new ActualizarControllerEjb();
+			actualizarEjb.actualizar(numeroModif);
+			
+			response.sendRedirect("listarTarjetas");
+		
+			break;	
 		}
 	}
 }

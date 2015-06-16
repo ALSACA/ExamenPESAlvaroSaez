@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+
 import es.curso.model.entity.Numero;
 import es.curso.persistence.model.dao.NumeroDao;
 
@@ -29,15 +30,16 @@ public class NumeroDaoJdbc implements NumeroDao{
 			abrirConexion();
 			 /* 2. preparar la sentencia -sql-para agregar*/
 			PreparedStatement ps=cx.prepareStatement(
-					"INSERT INTO NUMERO VALUES(?,?,?,?,?,?,?)");
+					"INSERT INTO TARJETAS VALUES(?,?,?,?,?,?,?,?)");
 			//2.1.INSERTAR LOS DATOS DEL CLIENTE EN LAS INTERROGACIONES
 			ps.setInt(1, 0);
 			ps.setInt(2, numero.getNumero());
 			ps.setString(3, numero.getCupoMaximo());
 			ps.setString(4, numero.getCupoDisponible());
-			ps.setString(5, numero.getNumeroComprobacion());
-			ps.setString(6, numero.getContrasenha());
-			ps.setBoolean(7, numero.getBloqueada());
+			ps.setString(5, numero.getTipo());
+			ps.setString(6, numero.getNumeroComprobacion());
+			ps.setString(7, numero.getContrasenha());
+			ps.setBoolean(8, numero.getBloqueada());
 			/* 3. ejecutar la sentencia -sql-
 			 */
 			ps.executeUpdate(); //=q dar al play en heidi
@@ -72,7 +74,7 @@ public class NumeroDaoJdbc implements NumeroDao{
 		 /* 2. preparar la sentencia -sql-para MOSTRAR*/
 		try {
 			PreparedStatement ps=cx.prepareStatement(
-					"SELECT *FROM NUMERO");
+					"SELECT *FROM TARJETAS");
 			
 			/* 3. ejecutar la sentencia -sql-
 			 */
@@ -87,6 +89,7 @@ public class NumeroDaoJdbc implements NumeroDao{
 				numeroTemporal.setNumero(consulta.getInt("numero"));
 				numeroTemporal.setCupoMaximo(consulta.getString("cupoMaximo"));
 				numeroTemporal.setCupoDisponible(consulta.getString("cupoDisponible"));
+				numeroTemporal.setTipo(consulta.getString("tipo"));
 				numeroTemporal.setNumeroComprobacion(consulta.getString("numeroComprobacion"));
 				numeroTemporal.setContrasenha(consulta.getString("contrasenha"));
 				numeroTemporal.setBloqueada(consulta.getBoolean("bloqueada"));
@@ -131,6 +134,46 @@ public class NumeroDaoJdbc implements NumeroDao{
 			e.printStackTrace();
 		}
 		
+	}
+	@Override
+	public void update(Numero numero) {
+		
+		
+		try {
+			//1.establecer conexión
+			abrirConexion();
+			//2.preparar la sentencia sql parametrizada(las de ?)
+			PreparedStatement ps=cx.prepareStatement("UPDATE TARJETAS SET numero=?, cupoMaximo=?, cupoDisponible=?, tipo=?, numeroComprobacion=?, contrasenha=?, bloqueada=? WHERE ID=?");				
+			//2.1.especificar lo que va en ?
+			
+			ps.setInt(1, numero.getNumero());
+			ps.setString(2, numero.getCupoMaximo());
+			ps.setString(3, numero.getCupoDisponible());
+			ps.setString(4, numero.getTipo());
+			ps.setString(5, numero.getNumeroComprobacion());
+			ps.setString(6, numero.getContrasenha());
+			ps.setBoolean(7, numero.getBloqueada());
+			ps.setInt(8, numero.getId());
+						
+			//3.ejecutar la query
+			ps.executeUpdate();
+			//3.1 hacer commit
+			cx.commit();
+			}
+		catch (SQLException e) {
+			try {
+				cx.rollback();
+			} catch (SQLException e1) {
+			
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		finally{
+					/* 4. cerrar la conexion */
+					cerrarConexion();
+					}	
+					
 	}
 	
 	

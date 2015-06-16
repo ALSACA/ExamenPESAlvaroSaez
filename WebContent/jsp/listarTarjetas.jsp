@@ -7,12 +7,24 @@
 
     <%@include file="../template/header.jsp"%>
     
+    <script type="text/javascript">
+    function enviar(boton){
+        var formulario=document.getElementById("formulario"+boton.name.substring(3));
+        //alterar el action según el boton pulsado
+        if(boton.value=="Actualizar")
+            formulario.action="${pageContext.request.contextPath}/Banco/actualizar";
+        if(boton.value=="Eliminar")
+            formulario.action="${pageContext.request.contextPath}/Banco/eliminarPorId";
+            formulario.submit();
+     }
+    </script>
+    
 
  <section>
        <h1>Banco XX</h1>
        <h2>Listado General de Tarjetas</h2> 
     <!--tabla html dinámicamente-->
-    <% ArrayList<Numero> numeros=(ArrayList<Numero>)request.getAttribute("numero"); %>
+    <% ArrayList<Numero> numeros=(ArrayList<Numero>)request.getAttribute("numeros"); %>
     <%--=numeros esto es para listar sin tabla--%>
    <table>
         <tr>
@@ -36,17 +48,17 @@
                 <td><input type="text" name="tipo" value="<%= c.getTipo() %>" /></td>
                 <td>
                     <label for="visa">VISA</label>
-                    <input type="radio" name="tipo" value="visa"<%= c.getTipo().equals("visa")?"checked":"" %>" /> 
+                    <input type="radio" name="tipo" value="visa"<%= c.getTipo().equals("visa")?"checked='checked'":"" %> /> 
                     <label for="master">MASTERCARD</label>
-                    <input type="radio" name="tipo" value="mastercard"<%= c.getTipo().equals("mastercard")?"checked":"" %>" />
+                    <input type="radio" name="tipo" value="mastercard"<%= c.getTipo().equals("master")?"checked='checked'":"" %> />
                 </td> 
                 <td><input type="text" name="numeroComprobacion" value="<%= c.getNumeroComprobacion() %>" /></td>
                 <td><input type="text" name="contrasenha" value="<%= c.getContrasenha() %>" /></td>
                 <td>
                 <label for="bloqueada">Bloqueada</label>
-                <input type="radio" name="bloqueada" value="true" <%= c.getBloqueada()?"checked":"" %> />
+                <input type="radio" name="bloqueada" value="true" <%= c.getBloqueada()==false?"checked='checked'":"" %> />
                 <label for="activa">Activa</label>
-                <input type="radio" name="bloqueada" value="false" <%= c.getBloqueada()?"checked":"" %>/>
+                <input type="radio" name="bloqueada" value="false" <%= c.getBloqueada()==true?"checked='checked'":"" %>/>
                 </td>
                 
                 <td><input class="btnSinBordes" type="submit" 
