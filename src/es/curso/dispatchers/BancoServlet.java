@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import es.curso.controllers.ActualizarController;
 import es.curso.controllers.EliminarPorIdController;
 import es.curso.controllers.ejb.ActualizarControllerEjb;
+import es.curso.controllers.ejb.BuscarPorNumeroControllerEjb;
 import es.curso.controllers.ejb.DarAltaTarjetasControllerEjb;
 import es.curso.controllers.ejb.EliminarPorIdControllerEjb;
 import es.curso.controllers.ejb.ListarTarjetasControllerEjb;
@@ -62,10 +63,12 @@ public class BancoServlet extends HttpServlet {
 			rd = request.getRequestDispatcher("/jsp/eliminarPorId.jsp");
 			rd.forward(request, response);
 			break;
-		default:
-			rd = request.getRequestDispatcher("../index.jsp");
+		case "ampliarCupo"://se redirigirá hacia el formulario
+			//buscar por nombre,
+			rd = request.getRequestDispatcher("/jsp/ampliarCupo.jsp");
 			rd.forward(request, response);
 			break;
+		
 		}
 	
 	}
@@ -129,6 +132,20 @@ public class BancoServlet extends HttpServlet {
 			response.sendRedirect("listarTarjetas");
 		
 			break;
+		case "ampliarCupo"://recuperar lA CADENA  TECLEADA EN EL FORMULARIO
+			String cadenaNumero=request.getParameter("numero");
+			//llamar al controlador adecuado
+			BuscarPorNumeroControllerEjb controladorBusqueda=new BuscarPorNumeroControllerEjb();
+			ArrayList<Numero> resultado= controladorBusqueda.buscarPorNumero(cadenaNumero);				
+			//meter en el request el arrayLIst de respuesta	
+			request.setAttribute("numeros", resultado);
+			//mandarle un título diferente
+			request.setAttribute("titulo", "Búsqueda por " + cadenaNumero);
+			//y redirigir hacia el jsp listarTodos
+			rd=request.getRequestDispatcher("/jsp/listarTodos.jsp");
+			rd.forward(request, response);
+			
+			break;
 		case "eliminarPorId":
 			//recuperar id del formulario
 			int id=Integer.parseInt(request.getParameter("id"));
@@ -140,7 +157,7 @@ public class BancoServlet extends HttpServlet {
 			response.sendRedirect("listarTodos");
 			
 			break;
-			
+		
 		}
 	}
 }

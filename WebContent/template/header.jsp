@@ -18,7 +18,8 @@
                 <li><a href="${pageContext.request.contextPath}/index.jsp">Inicio</a></li>
                 <li><a href="${pageContext.request.contextPath}/Banco/altaTarjeta">Alta Tarjeta</a></li>
                 <li><a href="${pageContext.request.contextPath}/Banco/listarTarjetas">Gestionar Tarjetas</a></li>
-                <li><a href="${pageContext.request.contextPath}/Banco/ampliarSaldo">Bloquear tarjeta</a></licontextPath>
+                <li><a href="${pageContext.request.contextPath}/Banco/ampliarCupo">Ampliar Cupo</a></li>
+                <li><a href="${pageContext.request.contextPath}/Banco/ampliarSaldo">Ampliar Saldo</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/localizanos.jsp">Localizanos</a></li>
              </ul>
         </nav>
