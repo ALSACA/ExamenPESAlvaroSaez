@@ -85,6 +85,74 @@ public class Numero {
 				+ "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((bloqueada == null) ? 0 : bloqueada.hashCode());
+		result = prime * result
+				+ ((contrasenha == null) ? 0 : contrasenha.hashCode());
+		result = prime * result
+				+ ((cupoDisponible == null) ? 0 : cupoDisponible.hashCode());
+		result = prime * result
+				+ ((cupoMaximo == null) ? 0 : cupoMaximo.hashCode());
+		result = prime * result + id;
+		result = prime * result + numero;
+		result = prime
+				* result
+				+ ((numeroComprobacion == null) ? 0 : numeroComprobacion
+						.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Numero other = (Numero) obj;
+		if (bloqueada == null) {
+			if (other.bloqueada != null)
+				return false;
+		} else if (!bloqueada.equals(other.bloqueada))
+			return false;
+		if (contrasenha == null) {
+			if (other.contrasenha != null)
+				return false;
+		} else if (!contrasenha.equals(other.contrasenha))
+			return false;
+		if (cupoDisponible == null) {
+			if (other.cupoDisponible != null)
+				return false;
+		} else if (!cupoDisponible.equals(other.cupoDisponible))
+			return false;
+		if (cupoMaximo == null) {
+			if (other.cupoMaximo != null)
+				return false;
+		} else if (!cupoMaximo.equals(other.cupoMaximo))
+			return false;
+		if (id != other.id)
+			return false;
+		if (numero != other.numero)
+			return false;
+		if (numeroComprobacion == null) {
+			if (other.numeroComprobacion != null)
+				return false;
+		} else if (!numeroComprobacion.equals(other.numeroComprobacion))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		return true;
+	}
+	
 	
 	
 }
