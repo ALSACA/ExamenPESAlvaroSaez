@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import java.util.ArrayList;
-
-
 
 import es.curso.model.entity.Numero;
 import es.curso.persistence.model.dao.NumeroDao;
@@ -176,7 +173,7 @@ public class NumeroDaoJdbc implements NumeroDao{
 					
 	}
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		try {
 			//1.establecer conexión
 			abrirConexion();
@@ -204,6 +201,11 @@ public class NumeroDaoJdbc implements NumeroDao{
 			cerrarConexion();
 			}
 		
+	}
+	@Override
+	public ArrayList<Numero> searchByNumero(String cadenaNumero) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
